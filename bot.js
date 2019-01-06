@@ -1604,26 +1604,7 @@ if(message.content == prefix+"عواصم"){
                             message.channel.send(image)
                                 }
                             });       
-                       client.on("message", message => {
-                                    var prefix = "$";
-                                 if (message.content === "$help") {
-                                     message.channel.send('**تم ارسالك في الخاص** :mailbox_with_mail: ');
-                                  const embed = new Discord.RichEmbed() 
-                                      .setColor("RANDOM")
-                                      .setDescription(`
-                                      وصف عن البوت
-                                      :gem: البوت فيه كثير ميزات حلوة و جميلة
-                                      
-                                       :rocket: البوت يعمل 24 ساعه
-                                      
-                                       :up: خدمة سبورت 24/7
-                                      
-                                       :free: البوت مجاني %100
-                                `)
-                                   message.author.sendEmbed(embed)
-                                    
-                                   }
-                                   }); 
+                     
                                 
                                 
                                    client.on("message", message => {
@@ -1671,9 +1652,6 @@ if(message.content == prefix+"عواصم"){
                                       『$allbots /  لعرض جميع البوتات الي بالسيرفر』
                                       『$savatar / صورة السيرفر』
                                       『$avatar / صورتك او صورة الي تمنشنة』
-                                      『$inv / لدعوة البوت الى سيرفرك』
-                                      『$support / سيرفر الدعم』
-                                      『$contact / ارسال اقتراح او لمراسلة صاحب البوت』**
                                       
                                       
                                 `)
