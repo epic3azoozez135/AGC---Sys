@@ -1006,7 +1006,7 @@ client.on('message', message => {
 var embed = new Discord.RichEmbed()
 .setColor('RANDOM')
  .setThumbnail(message.author.avatarURL) 
-.addField('Speed BOT' ,
+.addField('AGC - System' ,
 `${Za7f[Math.floor(Math.random() * Za7f.length)]}`)
 message.channel.sendEmbed(embed);
 console.log('[38ab] Send By: ' + message.author.username)
@@ -1431,7 +1431,7 @@ var aoasm =[
 {q:"ما عاصمة **كندا  **",a:"اوتاوا"},
 {q:"ما عاصمة **البرازيل  **",a:"برازيليا"},
 ];
-if(message.content == prefix+"عواصم"){
+if(message.content == prefix +"عواصم"){
     if(UserBlocked.has(message.guild.id)) return message.channel.send("هناك جلسة .")
     UserBlocked.add(message.guild.id)
     var ask = aoasm[Math.floor(Math.random() * aoasm.length)];
