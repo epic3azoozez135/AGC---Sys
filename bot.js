@@ -1976,6 +1976,33 @@ channel.send({embed : embed});
 
 
 
+const Discord = require('discord.js');
+const client = new Discord.Client();
+const prefix = "$";
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+});
+
+client.on('message', message => {
+  let command = message.content.split(" ")[0].slice(prefix.length);
+  let args = message.content.split(" ").slice(1);
+
+  if(!message.content.toLowerCase().startsWith(prefix)) return;
+  if(command == "اقتراح") {
+    if(!args.join(" ")) return message.reply(`${prefix}اقتراح (اقتراحك )`);
+    let channel = message.guild.channels.find(c => c.name == "الأقتراحات");
+    let embed = new Discord.RichEmbed()
+    .setAuthor(message.author.username, message.author.displayAvatarURL)
+    .setTitle(`New Suggestion!`)
+    .setFooter(message.author.id)
+    .setDescription(args.join(" "));
+    channel.send(embed).then(msg => {
+      msg.react("✅").then(() => msg.react("❌"));
+      message.delete()
+      message.channel.send(`تم اضافة اقتراحك في روم  <#${channel.id}>`);
+    });
+  }
+});
 
 
 
