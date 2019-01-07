@@ -1946,5 +1946,18 @@ client.on('guildMemberAdd', member => {
 
 
 
+client.on('guildMemberAdd', member => {
+    const botCount = member.guild.members.filter(m=>m.user.bot).size
+    const memberCount = [member.guild.memberCount] - [botCount]
+    client.channels.get('531857966593474574').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
+});
+
+client.on('guildMemberRemove', member => {
+    const botCount = member.guild.members.filter(m=>m.user.bot).size
+    const memberCount = [member.guild.memberCount] - [botCount]
+    client.channels.get('531857966593474574').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
+});
+
+
 
 client.login(process.env.BOT_TOKEN);
