@@ -696,98 +696,7 @@ msg.channel.send(`**Bot InviteURL : ** https://discordapp.com/oauth2/authorize?c
 });
 
 
-client.on('message',function(message) {
-    let prefix = "$";
-let args = message.content.split(" ").slice(1).join(" ");
-if(message.content.startsWith(prefix + "say")) {
-if(!args) return;
-message.channel.send(`**# ${args}**`); // محطوط # عشان محد يستخدم البوت لتبنيد / طرد احد من السيرفر
-}
-});
 
-
-client.on("message", (message) => {
-    /// ALPHA CODES
-   if (message.content.startsWith("$ticket")) {     /// ALPHA CODES
-        const reason = message.content.split(" ").slice(1).join(" ");     /// ALPHA CODES
-        if (!message.guild.roles.exists("name", "Support Team")) return message.channel.send(`لازم تسوي رتبه اسمه Support Team`);
-        if (message.guild.channels.exists("name", "ticket-{message.author.id}" + message.author.id)) return message.channel.send(`You already have a ticket open.`);    /// ALPHA CODES
-        message.guild.createChannel(`ticket-${message.author.username}`, "text").then(c => {
-            let role = message.guild.roles.find("name", "Support Team");
-            let role2 = message.guild.roles.find("name", "@everyone");
-            c.overwritePermissions(role, {
-                SEND_MESSAGES: true,
-                READ_MESSAGES: true
-            });    /// ALPHA CODES
-            c.overwritePermissions(role2, {
-                SEND_MESSAGES: false,
-                READ_MESSAGES: false
-            });
-            c.overwritePermissions(message.author, {
-                SEND_MESSAGES: true,
-                READ_MESSAGES: true
-            });
-            message.channel.send(`:white_check_mark: **تم إنشاء تذكرتك ، #${c.name}.**`);
-            const embed = new Discord.RichEmbed()
-                .setColor(0xCF40FA)
-                .addField(`مرحباّ ${message.author.username}!`, `يرجى محاولة شرح سبب فتح هذه التذكرة بأكبر قدر ممكن من التفاصيل. سيكون فريق الدعم لدينا قريبا للمساعدة.`)
-                .setTimestamp();
-            c.send({
-                embed: embed
-            });
-        }).catch(console.error);
-    }
- 
- 
-  if (message.content.startsWith("$close")) {
-        if (!message.channel.name.startsWith(`ticket-`)) return message.channel.send(`You can't use the close command outside of a ticket channel.`);
- 
-        message.channel.send(`هل أنت متأكد؟ بعد التأكيد ، لا يمكنك عكس هذا الإجراء!\n للتأكيد ، اكتب\`$confirm\`. سيؤدي ذلك إلى مهلة زمنية في غضون 10 ثوانٍ وإلغائها`)
-            .then((m) => {
-                message.channel.awaitMessages(response => response.content === '$confirm', {
-                        max: 1,
-                        time: 10000,
-                        errors: ['time'],
-                    })    
-                    .then((collected) => {
-                        message.channel.delete();
-                    })   
-                    .catch(() => {
-                        m.edit('Ticket close timed out, the ticket was not closed.').then(m2 => {
-                            m2.delete();
-                        }, 3000);
-                    });
-            });
-    }
- 
-});
-
- 
-client.on('message', message => { //By |.iiMostafaYT#1001
-    if (message.content.startsWith("$bot")) { //By |.iiMostafaYT#1001
-    message.channel.send({ //By |.iiMostafaYT#1001
-        embed: new Discord.RichEmbed() //By |.iiMostafaYT#1001
-            .setAuthor(client.user.username,client.user.avatarURL) //By |.iiMostafaYT#1001
-            .setThumbnail(client.user.avatarURL) //By |.iiMostafaYT#1001
-            .setColor('RANDOM') //By |.iiMostafaYT#1001
-            .setTitle('Info SkyBot.') //By |.iiMostafaYT#1001
-            .addField('**My Ping**' , [`${Date.now() - message.createdTimestamp}` + 'MS'], true) //By |.iiMostafaYT#1001
-            .addField('**RAM Usage**', `[${(process.memoryUsage().rss / 1048576).toFixed()}MB]`, true) //By |.iiMostafaYT#1001
-            .addField('**Servers**', [client.guilds.size], true) //By |.iiMostafaYT#1001
-            .addField('**Channels**' , `[ ${client.channels.size} ]` , true) //By |.iiMostafaYT#1001
-            .addField('**Users**' ,`[ ${client.users.size} ]` , true) //By |.iiMostafaYT#1001
-            .addField('**My Name**' , `[ ${client.user.tag} ]` , true) //By |.iiMostafaYT#1001
-            .addField('**My ID**' , `[ ${client.user.id} ]` , true) //By |.iiMostafaYT#1001
-            .addField('**DiscordJS**' , `[ ${Discord.version} ]` , true) //By |.iiMostafaYT#1001
-            .addField('**NodeJS**' , `[ ${process.version} ]` , true) //By |.iiMostafaYT#1001
-            .addField('**Arch**' , `[ ${process.arch} ]` , true) //By |.iiMostafaYT#1001
-            .addField('**Platform**' , `[ ${process.platform} ]` , true) //By |.iiMostafaYT#1001
-                  .addField('**My Prefix**' , `[ ${prefix} ]` , true) //By |.iiMostafaYT#1001
-                  .addField('**My Language**' , `[ Java Script ]` , true) //By |.iiMostafaYT#1001
-                  .setFooter('By | .iiMosTaFaYT#1001') //By |.iiMostafaYT#1001
-    }) //By |.iiMostafaYT#1001
-} //By |.iiMostafaYT#1001
-}); //By |.iiMostafaYT#1001
 
 
  
@@ -1918,30 +1827,6 @@ if(message.content == prefix +"عواصم"){
 
 
 
-const invites = {};
-
-const wait = require('util').promisify(setTimeout);
-
-client.on('ready', () => {
-  wait(1000);
-
-  client.guilds.forEach(g => {
-    g.fetchInvites().then(guildInvites => {
-      invites[g.id] = guildInvites;
-    });
-  });
-});
-
-client.on('guildMemberAdd', member => {
-  member.guild.fetchInvites().then(guildInvites => {
-    const ei = invites[member.guild.id];
-    invites[member.guild.id] = guildInvites;
-    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
-    const inviter = client.users.get(invite.inviter.id);
-    const logChannel = member.guild.channels.find(channel => channel.name === "welcome");
-    logChannel.send(`${member} تمت دعوته بواسطـة : <@${inviter.id}>`);
-  });
-});
 
 
 
@@ -1974,27 +1859,6 @@ channel.send({embed : embed});
 
 
 
-
-client.on('message', message => {
-  let command = message.content.split(" ")[0].slice(prefix.length);
-  let args = message.content.split(" ").slice(1);
-
-  if(!message.content.toLowerCase().startsWith(prefix)) return;
-  if(command == "اقتراح") {
-    if(!args.join(" ")) return message.reply(`${prefix}اقتراح (اقتراحك )`);
-    let channel = message.guild.channels.find(c => c.name == "الأقتراحات");
-    let embed = new Discord.RichEmbed()
-    .setAuthor(message.author.username, message.author.displayAvatarURL)
-    .setTitle(`New Suggestion!`)
-    .setFooter(message.author.id)
-    .setDescription(args.join(" "));
-    channel.send(embed).then(msg => {
-      msg.react("✅").then(() => msg.react("❌"));
-      message.delete()
-      message.channel.send(`تم اضافة اقتراحك في روم  <#${channel.id}>`);
-    });
-  }
-});
 
 
 
