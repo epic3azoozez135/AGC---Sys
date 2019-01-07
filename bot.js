@@ -36,13 +36,7 @@ client.on('ready', () => {
 
 
 
-client.on("guildMemberAdd", member => {
-  member.createDM().then(function (channel) {
-  return channel.send(`:rose:  ولكم نورت السيرفر:rose: 
-:crown:اسم العضو  ${member}:crown:  
-انت العضو رقم ${member.guild.memberCount} `) 
-}).catch(console.error)
-})
+
 
 client.on('message', message => {
 
@@ -1124,18 +1118,6 @@ return;
 
 
 
-client.on('message', message => {
-	var prefix = "$";
-if (message.content.startsWith(prefix + 'tag')) {
-    let args = message.content.split(" ").slice(1);
-if(!args[0]) return message.reply('مرجو كتابة نص الدي تريد');  
-
-    figlet(args.join(" "), (err, data) => {
-              message.channel.send("```" + data + "```")
-           })
-}
-});
-
 
  
  
@@ -1374,36 +1356,6 @@ if(message.content == prefix +"عواصم"){
 
                                 
                                     
-                                    client.on('message', message => { 
-                                        var prefix ="$";
-                                               if (message.content.startsWith(prefix + "user")) {
-                                         var args = message.content.split(" ").slice(1);
-                                         let user = message.mentions.users.first();
-                                         var men = message.mentions.users.first();
-                                            var heg;
-                                            if(men) {
-                                                heg = men
-                                            } else {
-                                                heg = message.author
-                                            }
-                                          var mentionned = message.mentions.members.first();
-                                             var h;
-                                            if(mentionned) {
-                                                h = mentionned
-                                            } else {
-                                                h = message.member
-                                            }
-                                                   moment.locale('ar-TN');
-                                          var id = new  Discord.RichEmbed()
-                                          .setAuthor(message.author.username, message.author.avatarURL) 
-                                        .setColor("#707070")
-                                        .addField(': دخولك لديسكورد قبل', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true) 
-                                        .addField(': انضمامك لسيرفر قبل', `${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')} \n \`${moment(h.joinedAt).fromNow()}\``, true)               
-                                        .setFooter(`SkyBot.`, 'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')                                 
-                                        .setThumbnail(heg.avatarURL);
-                                        message.channel.send(id)
-                                    }       });
-                                    
                                     
                                     client.on('message', message => {
                                         if (message.content.startsWith("$bans")) {
@@ -1441,7 +1393,7 @@ if(message.content == prefix +"عواصم"){
                             if (command == "embed") {
                                 if (!message.channel.guild) return message.reply('** This command only for servers **');
                                 let say = new Discord.RichEmbed()
-                                    .addField('Emebad:', `${message.author.username}#${message.author.discriminator}`)
+                                    .addField('Embed:', `${message.author.username}#${message.author.discriminator}`)
                                     .setDescription(args.join("  "))
                                     .setColor(0x23b2d6)
                                 message.channel.sendEmbed(say);
