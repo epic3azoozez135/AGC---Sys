@@ -1789,20 +1789,23 @@ client.on('guildMemberRemove', member => {
 
 
 
-client.on('guildMemberAdd', member => {
+client.on('guildMemberAdd', Sal => {
     var embed = new Discord.RichEmbed()
-    .setThumbnail(member.user.avatarURL)
-  .addField("***شكرا الانضمامك الينا***" ,member.user.username )
-    .setDescription('***بكل حب واحترام وشوق نستقبلك ونتمنى لك قضآء أجمل اللحظات ولآوقات معنا***')
+    .setAuthor(Sal.user.username, Sal.user.avatarURL)
+    .setThumbnail(Sal.user.avatarURL)
+    .setImage('https://cdn.discordapp.com/attachments/492862340484694027/493771573740830740/welcome1.png') //هنا حط الصوره الي تبيها
+    .setTitle('عضو جديد!')
+    .setDescription('مرحبا بك بالسيرفر')
+    .addField('``ايدي العضو``:',"" +  Sal.user.id, true)
+    .addField('``تاق العضو``', Sal.user.discriminator, true)
+    .addField('``تم الانشاء في``', Sal.user.createdAt, true)
+    .addField(' 👤  انت رقم',`**[ ${Sal.guild.memberCount} ]**`,true)
     .setColor('RANDOM')
-    .setImage('http://www.imgion.com/images/01/Welcome-buddy.jpg')
-var channel =member.guild.channels.find('name', 'welcome')
-if (!channel) return;
-channel.send({embed : embed});
-}); 
-
-
-
+    .setFooter(Sal.guild.name, Sal.guild.iconURL, true)
+    var channel =Sal.guild.channels.find('name', 'welcome') // هنا حط اسم الروم الي تبيه يكتب فيه
+    if (!channel) return;
+    channel.send({embed : embed});
+    });
 
 
 
