@@ -1975,14 +1975,6 @@ channel.send({embed : embed});
 
 
 
-
-const Discord = require('discord.js');
-const client = new Discord.Client();
-const prefix = "$";
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-});
-
 client.on('message', message => {
   let command = message.content.split(" ")[0].slice(prefix.length);
   let args = message.content.split(" ").slice(1);
