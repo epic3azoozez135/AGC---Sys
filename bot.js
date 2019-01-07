@@ -1185,12 +1185,6 @@ let prefix = '$'
     }
 });
 
-client.on('guildCreate', guild => {
-    var embed = new Discord.RichEmbed()
-    .setColor(0x5500ff)
-    .setDescription(`**شكراً لك لإضافه البوت الى سيرفرك**`)
-        guild.owner.send(embed)
-  });
 
 
   var fkk =[
@@ -1378,41 +1372,7 @@ if(message.content == prefix +"عواصم"){
 
 
 
-                                 client.on('message' , message => {
-                                    var prefix = "$"
-                                    
-                                    if (message.author.bot) return;
-                                    if (message.content.startsWith(prefix + "contact")) {
-                                    if (!message.channel.guild) return;
-                                    
-                                    
-                                    
-                                    let args = message.content.split(" ").slice(1).join(" ");
-                                    
-                                    
-                                    
-                                    client.users.get("467777208732352512","467777208732352512").send(
-                                        "\n" + "**" + "● السيرفر :" + "**" +
-                                        "\n" + "**" + "» " + message.guild.name + "**" +
-                                        "\n" + "**" + " ● المرسل : " + "**" +
-                                        "\n" + "**" + "» " + message.author.tag + "**" +
-                                        "\n" + "**" + " ● الرسالة : " + "**" +
-                                        "\n" + "**" + args + "**")
-                                    
-                                    let embed = new Discord.RichEmbed()
-                                         .setAuthor(message.author.username, message.author.avatarURL)
-                                         .setDescription(':mailbox_with_mail: تم ارسال الرسالة الى صاحب البوت بنجاح')
-                                         .setThumbnail(message.author.avatarURL)
-                                         .setFooter("By : .iiMosTaFaYT#1001")
-                                                                                    
-                                    
-                                    message.channel.send(embed);
-                                    
-                                    
-                                    }
-                                        
-                                    });    
-                                    
+                                
                                     
                                     client.on('message', message => { 
                                         var prefix ="$";
@@ -1466,18 +1426,7 @@ if(message.content == prefix +"عواصم"){
                                            }
                                        });                                    
 
-                                       client.on('message', message => {
-                                        if (message.content === "$support") {
-                                        let embed = new Discord.RichEmbed()
-                                     .setAuthor(message.author.username)
-                                     .setColor("#9B59B6")
-                                     .addField(" ** :gear: Server Support :gear: **" , "  **https://discord.gg/kKxzjMz**")
-                                        
-                                        
-                                     message.channel.sendEmbed(embed);
-                                       }
-                                   });
-
+                                      
 
                                    client.on('message', message => {
                                     var prefix = "$";
@@ -1506,7 +1455,7 @@ if(message.content == prefix +"عواصم"){
                             if (!message.content.startsWith(prefix)) return;
                               let command = message.content.split(" ")[0];
                               command = command.slice(prefix.length);
-                                if(command === "mcskin") {
+                                if(command === "skin") {
                                         const args = message.content.split(" ").slice(1).join(" ")
                                 if (!args) return message.channel.send("** Type your skin name **");
                                 const image = new Discord.Attachment(`https://minotar.net/armor/body/${args}`, "skin.png");
