@@ -1742,7 +1742,7 @@ client.on('guildMemberRemove', member => {
 
 
 client.on("guildMemberAdd", member => {
-let welcomer = member.guild.channels.find("name","welcome");
+let welcomer = member.guild.channels.find("name"," welcome ");
       if(!welcomer) return;
       if(welcomer) {
          moment.locale('ar-ly');
@@ -1783,7 +1783,7 @@ client.on('guildMemberAdd', member => {
    
     const inviter = client.users.get(invite.inviter.id);
    
-    const channel = member.guild.channels.find(c => c.name === "welcome");
+    const channel = member.guild.channels.find(c => c.name === " welcome ");
    
     channel.send(`- Joined By :** ${inviter} .**`);
   });
