@@ -1741,21 +1741,53 @@ client.on('guildMemberRemove', member => {
 
 
 
-client.on('guildMemberAdd', Sal => {
-    var embed = new Discord.RichEmbed()
-    .setAuthor(Sal.user.username, Sal.user.avatarURL)
-    .setThumbnail(Sal.user.avatarURL)
-    .setTitle('عضو جديد!')
-    .setDescription('مرحبا بك بالسيرفر')
-    .addField('**تاق العضو**', Sal.user.discriminator, true)
-    .addField('**تم الانشاء في**', Sal.user.createdAt, true)
-    .addField(' 👤  انت رقم',`**[ ${Sal.guild.memberCount} ]**`,true)
-    .setColor('RANDOM')
-    .setFooter(Sal.guild.name, Sal.guild.iconURL, true)
-    var channel =Sal.guild.channels.find('name', 'welcome') // هنا حط اسم الروم الي تبيه يكتب فيه
-    if (!channel) return;
-    channel.send({embed : embed});
+client.on("guildMemberAdd", member => {
+let welcomer = member.guild.channels.find("name","welcome");
+      if(!welcomer) return;
+      if(welcomer) {
+         moment.locale('ar-ly');
+         var h = member.user;
+        let norelden = new Discord.RichEmbed()
+        .setColor('RANDOM')
+        .setThumbnail(h.avatarURL)
+        .setAuthor(h.username,h.avatarURL)
+        .addField(': **تاريخ دخولك الدسكورد**',`${moment(member.user.createdAt).format('D/M/YYYY h:mm a')} **\n** \`${moment(member.user.createdAt).fromNow()}\``,true)
+         .setFooter(`${h.tag}`,"https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif")
+     welcomer.send({embed:norelden});          
+               
+ 
+      }
+      });
+
+
+
+const invites = {};
+ 
+// ذا زي  setTimeout لاكن عشان ما يخرب الشكل
+const wait = require('util').promisify(setTimeout);
+ 
+client.on('ready', () => {
+  wait(2000);
+  client.guilds.forEach(g => {
+    g.fetchInvites().then(gi => {
+      invites[g.id] = gi;
     });
+  });
+});
+client.on('guildMemberAdd', member => {
+  if(member.bot) return;
+  member.guild.fetchInvites().then(gi => {
+    const ei = invites[member.guild.id];
+   
+    const invite = gi.find(i => ei.get(i.code).uses < i.uses);
+   
+    const inviter = client.users.get(invite.inviter.id);
+   
+    const channel = member.guild.channels.find(c => c.name === "welcome");
+   
+    channel.send(`- Joined By :** ${inviter} .**`);
+  });
+});
 
 
 
