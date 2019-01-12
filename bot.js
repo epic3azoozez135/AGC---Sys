@@ -1842,7 +1842,7 @@ client.on('guildMemberAdd', member => {
 
 client.on('guildMemberAdd', member => {
 
-    const channel = member.guild.channels.get("531176512544833539");
+    const channel = member.guild.channels.get("شات-عام");
   
     const millis = new Date().getTime() - member.user.createdAt.getTime();
     const now = new Date();
