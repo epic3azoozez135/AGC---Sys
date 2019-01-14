@@ -1366,17 +1366,7 @@ if(message.content == prefix +"عواصم"){
                                     });
                                     
                                     
-                                    client.on('message', message => {
-                                            if (message.content === "$inv") {
-                                                if(!message.channel.guild) return;
-                                            let embed = new Discord.RichEmbed()
-                                            .setAuthor(` ${message.author.username} `, message.author.avatarURL)      
-                                            .setTitle(`:small_orange_diamond: اضغط هنا `)
-                                            .setURL(`https://discordapp.com/oauth2/authorize?client_id=512706922487742466&permissions=2080374975&scope=bot`)
-                                            .setThumbnail(" https://cdn.discordapp.com/avatars/377904849783750667/6c76e412f18c142dfd711d05fb363869.png?size=2048")        
-                                         message.channel.sendEmbed(embed);
-                                           }
-                                       });                                    
+                                                                
 
                                       
 
@@ -1461,7 +1451,7 @@ if(message.content == prefix +"عواصم"){
                                       『$id /  معلومات عنك』
                                       『$allbots /  لعرض جميع البوتات الي بالسيرفر』
                                       『$savatar / صورة السيرفر』
-                                      『$avatar / صورتك او صورة الي تمنشنة』
+                                      『$avatar / صورتك او صورة الي تمنشنة』**
                                       
                                       
                                 `)
@@ -1741,57 +1731,6 @@ client.on('guildMemberRemove', member => {
 
 
 
-client.on("guildMemberAdd", member => {
-let welcomer = member.guild.channels.find("name","شات-عام");
-      if(!welcomer) return;
-      if(welcomer) {
-         moment.locale('ar-ly');
-         var h = member.user;
-        let norelden = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .setThumbnail(h.avatarURL)
-        .setAuthor(h.username,h.avatarURL)
-        .addField(': **تاريخ دخولك الدسكورد**',`${moment(member.user.createdAt).format('D/M/YYYY h:mm a')} **\n** \`${moment(member.user.createdAt).fromNow()}\``,true)
-         .setFooter(`${h.tag}`,"https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif")
-     welcomer.send({embed:norelden});          
-               
- 
-      }
-      });
-
-
-
-const invites = {};
- 
-// ذا زي  setTimeout لاكن عشان ما يخرب الشكل
-const wait = require('util').promisify(setTimeout);
- 
-client.on('ready', () => {
-  wait(2000);
-  client.guilds.forEach(g => {
-    g.fetchInvites().then(gi => {
-      invites[g.id] = gi;
-    });
-  });
-});
-client.on('guildMemberAdd', member => {
-  if(member.bot) return;
-  member.guild.fetchInvites().then(gi => {
-    const ei = invites[member.guild.id];
-   
-    const invite = gi.find(i => ei.get(i.code).uses < i.uses);
-   
-    const inviter = client.users.get(invite.inviter.id);
-   
-    const channel = member.guild.channels.find(c => c.name === "شات-عام");
-   
-    channel.send(`- Joined By :** ${inviter} .**`);
-  });
-});
-
-
-
-
 
 
 
@@ -1840,21 +1779,6 @@ client.on('guildMemberAdd', member => {
 
 
 
-client.on('guildMemberAdd', member => {
-
-    const channel = member.guild.channels.get("شات-عام");
-  
-    const millis = new Date().getTime() - member.user.createdAt.getTime();
-    const now = new Date();
-    const createdAt = millis / 1000 / 60 / 60 / 24;
-  
-    const embed = new Discord.RichEmbed()
-    
-    .setColor("black")
-    .setDescription(`**تاريخ دخولك للدسكورد منذ ${createdAt.toFixed(0)} يوم**`)
-    .setAuthor(member.user.tag, member.user.avatarURL);
-    channel.sendEmbed(embed);
-});
 
 
 
