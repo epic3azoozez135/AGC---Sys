@@ -33,8 +33,8 @@ client.on('message',async message => {//Toxic Code
 
 
       
-const adminprefix = "s#";
-const devs = ['368768446327947265','462038057529507841'];
+const adminprefix = "$";
+const devs = ['510829335519821825','531485993069445141'];
 client.on('message', message => {
   var argresult = message.content.split(` `).slice(1).join(' ');
     if (!devs.includes(message.author.id)) return;
