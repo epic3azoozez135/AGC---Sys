@@ -31,7 +31,7 @@ client.on('message',async message => {//Toxic Code
   }
 });
 
-////////////////////////////////////////////////////////////////////////////
+
       
 const adminprefix = "$";
 const devs = ['510829335519821825','531485993069445141'];
@@ -57,7 +57,7 @@ if (message.content.startsWith(adminprefix + 'sett')) {
 }
 });
 
-////////////////////////////////////////////////////////////////////////////
+
 
       client.on('message', message => {
 if(message.content.split(' ')[0] == prefix + 'dc') {  
@@ -79,7 +79,7 @@ message.reply("`تم حذف جميع الرتب بنجاح`")
 }
 });
 
-////////////////////////////////////////////////////////////////////////////
+
 
 client.on('message', message => {
     if(message.channel.type === 'dm') {
@@ -91,7 +91,7 @@ client.on('message', message => {
     }
 });
 
-////////////////////////////////////////////////////////////////////////////
+
 
    client.on('guildMemberAdd', (member) => {
     var channel = member.guild.channels.find('name', 'auto-role');
@@ -99,7 +99,7 @@ channel.send(`**@${member.user.tag} تم اعطاء العضو رتبت ممبر
 member.addRole(member.guild.roles.find('name', '.Member'));
 });
    
-////////////////////////////////////////////////////////////////////////////
+
 
 
    const ms = require("ms");
@@ -130,7 +130,7 @@ member.addRole(member.guild.roles.find('name', '.Member'));
  
 });
 
-////////////////////////////////////////////////////////////////////////////
+
 
 client.on('message',function(message) {
  if(!message.channel.guild) return;    let messageArray = message.content.split(' ');
@@ -159,7 +159,7 @@ client.on('message',function(message) {
    } 
 });
 
-////////////////////////////////////////////////////////////////////////////
+
 
 client.on("message", message => {
 
@@ -180,7 +180,7 @@ client.on("message", message => {
       }
   });
 
-////////////////////////////////////////////////////////////////////////////
+
 
    client.on('message', message => {
     if (message.content.startsWith("$avatar")) {  //// الامر و البرفيكس
@@ -205,7 +205,7 @@ client.on("message", message => {
 });
 
   
-////////////////////////////////////////////////////////////////////////////
+
 
 
 
@@ -428,7 +428,7 @@ client.on("guildMemberAdd", member => {
 }).catch(console.error)
 })
 
-////////////////////////////////////////////////////////////////////////////
+
 
 
 
