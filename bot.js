@@ -290,7 +290,7 @@ client.on("guildMemberAdd", member => {
           onoff: 'Off'
         }
         if(welcome[member.guild.id].onoff === 'Off') return;
-    let welcomer = member.guild.channels.find('name', `${welcome[member.guild.id].channel}`)
+    let welcomer = member.guild.channels.find('name', `${chat[member.guild.id].channel}`)
     let memberavatar = member.user.avatarURL
       if (!welcomer) return;
       if(welcomer) {
@@ -362,7 +362,7 @@ client.on('guildMemberAdd',async member => {
             ctx.clip();
             ctx.drawImage(ava, 36, 21, 260, 260);
              
-            let c = member.guild.channels.find('name', `${welcome[member.guild.id].channel}`)
+            let c = member.guild.channels.find('name', `${chat[member.guild.id].channel}`)
             if(!c) return;
             c.sendFile(canvas.toBuffer());
    
