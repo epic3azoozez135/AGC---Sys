@@ -411,7 +411,7 @@ client.on('guildMemberAdd', member => {
     const logChannel = member.guild.channels.find(channel => channel.name === `${welcome[member.guild.id].channel}`);
     if(!logChannel) return;
       setTimeout(() => {
-    logChannel.send(` ${member} Welocome To Imagine  , تم دعوته بواسطــة: <@${inviter.id}>`);
+    logChannel.send(` ${member} Welcome To Imagine  , تم دعوته بواسطــة: <@${inviter.id}>`);
   },2000)
   });
 });
