@@ -96,7 +96,7 @@ client.on('message', message => {
    client.on('guildMemberAdd', (member) => {
     var channel = member.guild.channels.find('name', 'auto-role');
 channel.send(`**@${member.user.tag} تم اعطاء العضو رتبت ممبر**`)
-member.addRole(member.guild.roles.find('name', '.Marble'));
+member.addRole(member.guild.roles.find('name', '.marble'));
 });
    
 
