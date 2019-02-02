@@ -7,7 +7,7 @@ const prefix = "$"
 
 client.on('guildMemberAdd', member => {
 
-    const channel = member.guild.channels.find('name', 'general');
+    const channel = member.guild.channels.find('name', ' general ');
   
     const millis = new Date().getTime() - member.user.createdAt.getTime();
     const now = new Date();
